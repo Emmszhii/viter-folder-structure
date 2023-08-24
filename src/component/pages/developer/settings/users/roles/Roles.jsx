@@ -8,7 +8,7 @@ import ModalAddRoles from "./ModalAddRoles";
 const Roles = () => {
   const [isShow, setIsShow] = React.useState(false);
 
-  const handleAddRoles = () => setIsShow(true);
+  const handleShowAddRoles = () => setIsShow(!isShow);
 
   return (
     <>
@@ -23,7 +23,7 @@ const Roles = () => {
             <h1>Roles</h1>
             <button
               className="btn btn--accent btn--sm"
-              onClick={handleAddRoles}
+              onClick={handleShowAddRoles}
             >
               Add
             </button>

@@ -6,7 +6,7 @@ function App() {
     <>
       <Router>
         <Routes>
-          <Route path="/settings/user/roles" element={<Roles />} />
+          <Route path="/settings/users/roles" element={<Roles />} />
         </Routes>
       </Router>
     </>

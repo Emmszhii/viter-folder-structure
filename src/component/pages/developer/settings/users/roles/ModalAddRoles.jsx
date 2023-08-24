@@ -1,9 +1,8 @@
-import React from "react";
 import { FaTimes } from "react-icons/fa";
 import SpinnerButton from "../../../../../partials/spinners/SpinnerButton";
 
 const ModalAddRoles = ({ setIsShow }) => {
-  const handleCloseRoles = () => setIsShow(false);
+  const handleCloseAddRoles = () => setIsShow(false);
 
   return (
     <div className="modal fixed top-0 left-0 w-full z-20">
@@ -13,7 +12,7 @@ const ModalAddRoles = ({ setIsShow }) => {
           <h3> Role </h3>
           <button
             className="absolute -top-4 right-0 "
-            onClick={handleCloseRoles}
+            onClick={handleCloseAddRoles}
           >
             <FaTimes className="text-gray-400 text-base" />
           </button>
@@ -36,7 +35,7 @@ const ModalAddRoles = ({ setIsShow }) => {
           <button className="btn btn--accent">
             Add <SpinnerButton />
           </button>
-          <button className="btn btn--cancel" onClick={handleCloseRoles}>
+          <button className="btn btn--cancel" onClick={handleCloseAddRoles}>
             Cancel
           </button>
         </div>
