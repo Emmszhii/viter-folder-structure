@@ -22,8 +22,15 @@ export default {
             transform: "rotate(360deg)",
           },
         },
+        loading: {
+          "0%": { transform: "translateX(-100%)" },
+          "100%": { transform: "translateX(100%)" },
+        },
       },
-      animation: { rotate: "rotate 2s linear infinite" },
+      animation: {
+        rotate: "rotate 2s linear infinite",
+        loading: "loading 1.5s ease-in infinite",
+      },
     },
   },
   plugins: [],

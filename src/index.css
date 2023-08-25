@@ -167,6 +167,9 @@
   .spinner {
     @apply animate-rotate h-[23px] w-[23px];
   }
+  .loading-bar::after {
+    @apply content-[''] absolute top-0 left-0 w-[180%] h-full bg-gradient-to-r from-transparent via-[#eeeeee] to-transparent animate-loading;
+  }
 }
 
 @layer utilities {
