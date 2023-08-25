@@ -7,6 +7,7 @@ import Pills from "../../../../../partials/Pills.jsx";
 import TableLoading from "../../../../../partials/TableLoading.jsx";
 import ModalConfirm from "../../../../../partials/modals/ModalConfirm.jsx";
 import ModalDeleteAndRestore from "../../../../../partials/modals/ModalDeleteAndRestore.jsx";
+import Footer from "../../../../../partials/Footer.jsx";
 
 const RolesTable = () => {
   const [isLoading, setIsLoading] = React.useState(false);
@@ -14,6 +15,12 @@ const RolesTable = () => {
   const [isDelete, setIsDelete] = React.useState(false);
   const [isRestore, setIsRestore] = React.useState(false);
   const [item, setItem] = React.useState([]);
+
+  const activeRoles = roles.filter((role) => role.status === 1).length;
+  const inActiveRoles = roles.filter((role) => role.status === 0).length;
+
+  console.log(activeRoles);
+  console.log(inActiveRoles);
 
   const handleArchive = (item) => {
     setItem(item);
@@ -117,7 +124,11 @@ const RolesTable = () => {
           </tbody>
         </table>
       )}
-
+      <Footer
+        record={roles.length}
+        active={activeRoles}
+        inactive={inActiveRoles}
+      />
       {isArchive && <ModalConfirm setIsArchive={setIsArchive} item={item} />}
       {isDelete && (
         <ModalDeleteAndRestore

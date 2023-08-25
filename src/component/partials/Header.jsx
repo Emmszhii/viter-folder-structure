@@ -1,10 +1,11 @@
 import React from "react";
+import Logo from "../svg/logo";
 
 const Header = () => {
   return (
     <>
       <header className="flex justify-between py-2 px-6">
-        <img src="https://via.placeholder.com/120x50" alt="" />
+        <Logo />
         <div className="flex items-center gap-3">
           <ul>
             <li className="leading-snug">Emms</li>

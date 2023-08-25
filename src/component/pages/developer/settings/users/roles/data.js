@@ -11,7 +11,7 @@ export const roles = [
     name: "Developer",
     description:
       "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ratione autem obcaecati quaerat facere aut aliquid, perferendis tempore quia sint dolorum!",
-    status: 0,
+    status: 1,
   },
   {
     id: 3,
