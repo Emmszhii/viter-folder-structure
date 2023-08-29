@@ -15,7 +15,7 @@ const Roles = () => {
       <Header />
       <section className="main__grid">
         <aside>
-          <Navigation />
+          <Navigation menu="settings" submenu="users" />
         </aside>
         <main className="pr-10">
           <Breadcrumbs />

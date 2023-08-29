@@ -136,7 +136,9 @@
   .nav__link button.active {
     @apply bg-[#436c8a] text-accent;
   }
-
+  .nav__link.active button {
+    @apply bg-[#436c8a] text-accent;
+  }
   .dropdown__link {
     @apply text-white border-l-2 hover:!border-accent duration-150 hover:!border-l-2 border-transparent pl-2 w-fit inline-block py-1;
   }
@@ -185,7 +187,7 @@
     scrollbar-gutter: stable;
   }
   .main__grid {
-    @apply grid grid-cols-[0px_1fr] lg:grid-cols-[200px_1fr] min-h-[calc(100vh_-_66px)] lg:min-h-[calc(100vh_-_82px)] gap-0 lg:gap-8 transition-all;
+    @apply grid grid-cols-[0px_1fr] lg:grid-cols-[200px_1fr] min-h-[calc(100vh_-_66px)]  gap-0 lg:gap-8 transition-all;
   }
 }
 

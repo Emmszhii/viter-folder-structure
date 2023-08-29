@@ -1,7 +1,9 @@
 import React from "react";
+import { AiFillHome } from "react-icons/ai";
+import { FaCogs, FaTools } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
-const Navigation = () => {
+const Navigation = ({ menu, submenu }) => {
   const [settingDropdown, setSettingDropdown] = React.useState(false);
 
   const handleSettingDropdown = () => setSettingDropdown(!settingDropdown);
@@ -10,64 +12,140 @@ const Navigation = () => {
     <>
       <nav className="py-4 bg-tm-gradient max-h-full min-h-full h-[calc(100vh_-_66px)] lg:h-[70vh] overflow-y-auto custom__scroll">
         <ul>
-          <li className="nav__link">
-            <a href="#">Home</a>
+          <li className={menu === "home" ? `nav__link active` : "nav__link"}>
+            <Link to="/">
+              <AiFillHome /> Home
+            </Link>
           </li>
-          <li className="nav__link">
-            <a href="#">Tools</a>
+          <li className={menu === "tools" ? `nav__link active` : "nav__link"}>
+            <Link to="/">
+              <FaTools />
+              Tools
+            </Link>
           </li>
-          <li className="nav__link">
-            <a href="#">Time Entry</a>
+          <li
+            className={menu === "timeEntry" ? `nav__link active` : "nav__link"}
+          >
+            <Link to="/">
+              <AiFillHome />
+              Time Entry
+            </Link>
           </li>
-          <li className="nav__link">
-            <a href="#">Staff</a>
+          <li className={menu === "staff" ? `nav__link active` : "nav__link"}>
+            <Link to="/">
+              <AiFillHome />
+              Staff
+            </Link>
           </li>
-          <li className="nav__link">
-            <a href="#">Client</a>
+          <li className={menu === "client" ? `nav__link active` : "nav__link"}>
+            <Link to="/">
+              <AiFillHome />
+              Client
+            </Link>
           </li>
-          <li className="nav__link">
-            <button onClick={handleSettingDropdown}>Settings</button>
+          <li
+            className={menu === "settings" ? `nav__link active` : "nav__link"}
+          >
+            <button onClick={handleSettingDropdown}>
+              <FaCogs /> Settings
+            </button>
             {settingDropdown && (
               <ul className="ml-9">
                 <li>
-                  <a href="#" className="dropdown__link">
+                  <Link
+                    to="/"
+                    className={
+                      submenu === "accessLevel"
+                        ? "dropdown__link active"
+                        : "dropdown__link"
+                    }
+                  >
                     Access Level
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <Link to="/settings/users" className="dropdown__link">
+                  <Link
+                    to="/settings/users"
+                    className={
+                      submenu === "users"
+                        ? "dropdown__link active"
+                        : "dropdown__link"
+                    }
+                  >
                     Users
                   </Link>
                 </li>
                 <li>
-                  <a href="#" className="dropdown__link">
+                  <Link
+                    to="/"
+                    className={
+                      submenu === "activities"
+                        ? "dropdown__link active"
+                        : "dropdown__link"
+                    }
+                  >
                     Activities
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="dropdown__link">
+                  <Link
+                    to="/"
+                    className={
+                      submenu === "rates"
+                        ? "dropdown__link active"
+                        : "dropdown__link"
+                    }
+                  >
                     Rates
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="dropdown__link">
+                  <Link
+                    to="/"
+                    className={
+                      submenu === "engagement"
+                        ? "dropdown__link active"
+                        : "dropdown__link"
+                    }
+                  >
                     Engagement
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="dropdown__link">
+                  <Link
+                    to="/"
+                    className={
+                      submenu === "offices"
+                        ? "dropdown__link active"
+                        : "dropdown__link"
+                    }
+                  >
                     Offices
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="dropdown__link">
+                  <Link
+                    to="/"
+                    className={
+                      submenu === "department"
+                        ? "dropdown__link active"
+                        : "dropdown__link"
+                    }
+                  >
                     Department
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="dropdown__link">
+                  <Link
+                    to="/"
+                    className={
+                      submenu === "entities"
+                        ? "dropdown__link active"
+                        : "dropdown__link"
+                    }
+                  >
                     Entities
-                  </a>
+                  </Link>
                 </li>
               </ul>
             )}
