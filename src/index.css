@@ -136,6 +136,11 @@
   .nav__link button.active {
     @apply bg-[#436c8a] text-accent;
   }
+
+  .dropdown__link {
+    @apply text-white border-l-2 hover:!border-accent duration-150 hover:!border-l-2 border-transparent pl-2 w-fit inline-block py-1;
+  }
+
   .breadcrumbs__link {
     @apply text-[12px] opacity-70 hover:underline relative after:content-['/'] after:absolute after:top-0 after:-right-[15px] last:after:hidden last:opacity-100 last:pointer-events-none;
   }

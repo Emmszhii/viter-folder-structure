@@ -19,9 +19,6 @@ const RolesTable = () => {
   const activeRoles = roles.filter((role) => role.status === 1).length;
   const inActiveRoles = roles.filter((role) => role.status === 0).length;
 
-  console.log(activeRoles);
-  console.log(inActiveRoles);
-
   const handleArchive = (item) => {
     setItem(item);
     setIsArchive(true);
@@ -63,6 +60,19 @@ const RolesTable = () => {
             </tr>
           </thead>
           <tbody>
+            {isLoading ||
+              (roles.length === 0 && (
+                <tr className="text-center ">
+                  <td colSpan="100%" className="p-10">
+                    {isLoading ? (
+                      <TableLoading count={20} cols={3} />
+                    ) : (
+                      <h1>No data</h1>
+                    )}
+                  </td>
+                </tr>
+              ))}
+
             {roles.map((item, key) => {
               return (
                 <tr key={key}>
@@ -71,7 +81,7 @@ const RolesTable = () => {
                   <td>{item.description}</td>
                   <td>
                     {item.status === 1 ? (
-                      <Pills label="active" bgc="bg-green-800" />
+                      <Pills label="Active" bgc="bg-green-800" />
                     ) : (
                       <Pills label="Inactive" bgc="bg-gray-500" />
                     )}
