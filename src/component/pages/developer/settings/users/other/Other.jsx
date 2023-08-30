@@ -8,12 +8,14 @@ import OtherAddModal from "./OtherAddModal";
 const Other = () => {
   const [item, setItem] = React.useState([]);
   const [isShowAddModal, setIsShowAddModal] = React.useState(false);
-
+  // show Nav in mobile
+  const [showNav, setShowNav] = React.useState(false);
+  const handleShowNav = () => setShowNav(!showNav);
   return (
     <>
-      <Header />
+      <Header showNav={showNav} handleShowNav={handleShowNav} />
       <section className="main__grid">
-        <aside>
+        <aside className={`${showNav ? "active" : ""}`}>
           <Navigation />
         </aside>
         <main>

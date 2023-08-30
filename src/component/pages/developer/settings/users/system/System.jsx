@@ -8,12 +8,14 @@ import ModalAddSystem from "./ModalAddSystem";
 const System = () => {
   const [showAddModal, setIsAddModal] = React.useState(false);
   const [item, setItem] = React.useState([]);
-
+  // show Nav in mobile
+  const [showNav, setShowNav] = React.useState(false);
+  const handleShowNav = () => setShowNav(!showNav);
   return (
     <>
-      <Header />
+      <Header showNav={showNav} handleShowNav={handleShowNav} />
       <section className="main__grid">
-        <aside>
+        <aside className={`${showNav ? "active" : ""}`}>
           <Navigation />
         </aside>
         <main className="pr-10">

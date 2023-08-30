@@ -7,6 +7,8 @@ import { FaTrashRestoreAlt } from "react-icons/fa";
 import { otheruser } from "./otherdata.js";
 import ModalConfirm from "../../../../../partials/modals/ModalConfirm";
 import ModalDeleteAndRestore from "../../../../../partials/modals/ModalDeleteAndRestore";
+import Loadmore from "../../../../../partials/Loadmore";
+import Footer from "../../../../../partials/Footer";
 
 const OtherTables = ({ setItem, item, setIsShowAddModal }) => {
   const [isLoading, setIsLoading] = React.useState(false);
@@ -15,8 +17,8 @@ const OtherTables = ({ setItem, item, setIsShowAddModal }) => {
   const [isArchive, setIsArchive] = React.useState(false);
   const [selectedItem, setSelectedItem] = React.useState([]);
 
-  const active = otheruser.filter((item) => item.status === 1);
-  const inactive = otheruser.filter((item) => item.status === 0);
+  const active = otheruser.filter((item) => item.status === 1).length;
+  const inactive = otheruser.filter((item) => item.status === 0).length;
 
   const handleRestore = (item) => {
     setSelectedItem(item);
@@ -130,7 +132,13 @@ const OtherTables = ({ setItem, item, setIsShowAddModal }) => {
               })}
             </tbody>
           </table>
-          <p className="text-center mt-10">End of list.</p>
+          <Loadmore />
+          <p className="text-center mt-4">End of list.</p>
+          <Footer
+            record={otheruser.length}
+            active={active}
+            inactive={inactive}
+          />
         </>
       )}
       {isArchive && (

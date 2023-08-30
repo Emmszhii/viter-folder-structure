@@ -21,7 +21,7 @@ const Roles = () => {
     <>
       <Header showNav={showNav} handleShowNav={handleShowNav} />
       <section className="main__grid">
-        <aside className={`${showNav ? "active" : ""} `}>
+        <aside className={`${showNav ? "active" : ""}`}>
           <Navigation menu="settings" submenu="users" />
         </aside>
         <main>
