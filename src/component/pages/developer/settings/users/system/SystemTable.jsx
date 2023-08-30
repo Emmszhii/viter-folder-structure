@@ -1,65 +1,39 @@
 import React from "react";
-import { AiTwotoneEdit, AiFillDelete } from "react-icons/ai";
+import { system } from "./systemdata";
+import TableLoading from "../../../../../partials/TableLoading";
+import SearchBar from "../../../../../partials/SearchBar";
+import Pills from "../../../../../partials/Pills";
+import { AiFillDelete, AiTwotoneEdit } from "react-icons/ai";
 import { BsArchiveFill } from "react-icons/bs";
-import { FaSearch, FaTrashRestoreAlt } from "react-icons/fa";
-import { roles } from "./data.js";
-import Pills from "../../../../../partials/Pills.jsx";
-import TableLoading from "../../../../../partials/TableLoading.jsx";
-import ModalConfirm from "../../../../../partials/modals/ModalConfirm.jsx";
-import ModalDeleteAndRestore from "../../../../../partials/modals/ModalDeleteAndRestore.jsx";
-import Footer from "../../../../../partials/Footer.jsx";
-import Nodata from "../../../../../partials/Nodata.jsx";
-import Loadmore from "../../../../../partials/Loadmore.jsx";
-import SearchBar from "../../../../../partials/SearchBar.jsx";
+import { FaTrashRestoreAlt } from "react-icons/fa";
+import Loadmore from "../../../../../partials/Loadmore";
+import Footer from "../../../../../partials/Footer";
+import ModalConfirm from "../../../../../partials/modals/ModalConfirm";
+import ModalDeleteAndRestore from "../../../../../partials/modals/ModalDeleteAndRestore";
 
-const RolesTable = ({ setIsShow, setItemEdit }) => {
+const SystemTable = ({ item, setItem }) => {
   const [isLoading, setIsLoading] = React.useState(false);
-  const [isArchive, setIsArchive] = React.useState(false);
-  const [isDelete, setIsDelete] = React.useState(false);
-  const [isRestore, setIsRestore] = React.useState(false);
-  const [item, setItem] = React.useState([]);
 
-  const activeRoles = roles.filter((role) => role.status === 1).length;
-  const inActiveRoles = roles.filter((role) => role.status === 0).length;
-
-  const handleEdit = (item) => {
-    setItemEdit(item);
-    setIsShow(true);
-  };
-
-  const handleArchive = (item) => {
-    setItem(item);
-    setIsArchive(true);
-  };
-  const handleDelete = (item) => {
-    setItem(item);
-    setIsDelete(true);
-    setIsRestore(false);
-  };
-  const handleRestore = (item) => {
-    setItem(item);
-    setIsDelete(true); // open modal
-    setIsRestore(true);
-  };
+  const handleEdit = () => {};
 
   React.useEffect(() => {
-    function loadData() {
-      setIsLoading(true),
-        setTimeout(() => {
-          setIsLoading(false);
-        }, 1000);
-    }
-    loadData();
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2500);
   }, []);
 
   return (
     <>
       {isLoading ? (
-        <TableLoading count={20} cols={4} />
+        <>
+          <TableLoading count={1} cols={1} />
+          <TableLoading count={20} cols={4} />
+        </>
       ) : (
         <>
           <SearchBar />
-          <div className="table__wrapper overflow-x-auto">
+          <div className="table__wrapper">
             <table>
               <thead>
                 <tr>
@@ -72,7 +46,7 @@ const RolesTable = ({ setIsShow, setItemEdit }) => {
               </thead>
               <tbody>
                 {isLoading ||
-                  (roles.length === 0 && (
+                  (system.length === 0 && (
                     <tr className="text-center ">
                       <td colSpan="100%" className="p-10">
                         {isLoading ? (
@@ -84,7 +58,7 @@ const RolesTable = ({ setIsShow, setItemEdit }) => {
                     </tr>
                   ))}
 
-                {roles.map((item, key) => {
+                {system.map((item, key) => {
                   return (
                     <tr key={key}>
                       <td>{item.id}</td>
@@ -104,7 +78,7 @@ const RolesTable = ({ setIsShow, setItemEdit }) => {
                               <button
                                 className="tooltip"
                                 data-tooltip="Edit"
-                                onClick={() => handleEdit(item)}
+                                // onClick={() => handleEdit(item)}
                               >
                                 <AiTwotoneEdit />
                               </button>
@@ -113,7 +87,7 @@ const RolesTable = ({ setIsShow, setItemEdit }) => {
                               <button
                                 className="tooltip"
                                 data-tooltip="Archive"
-                                onClick={() => handleArchive(item)}
+                                // onClick={() => handleArchive(item)}
                               >
                                 <BsArchiveFill />
                               </button>
@@ -125,7 +99,7 @@ const RolesTable = ({ setIsShow, setItemEdit }) => {
                               <button
                                 className="tooltip"
                                 data-tooltip="Delete"
-                                onClick={() => handleDelete(item)}
+                                // onClick={() => handleDelete(item)}
                               >
                                 <AiFillDelete />
                               </button>
@@ -134,7 +108,7 @@ const RolesTable = ({ setIsShow, setItemEdit }) => {
                               <button
                                 className="tooltip"
                                 data-tooltip="Restore"
-                                onClick={() => handleRestore(item)}
+                                // onClick={() => handleRestore(item)}
                               >
                                 <FaTrashRestoreAlt />
                               </button>
@@ -147,25 +121,27 @@ const RolesTable = ({ setIsShow, setItemEdit }) => {
                 })}
               </tbody>
             </table>
-            <Loadmore />
+            {/* <Loadmore /> */}
           </div>
         </>
       )}
-      <Footer
-        record={roles.length}
+      {/* <Footer
+        record={system.length}
         active={activeRoles}
         inactive={inActiveRoles}
-      />
-      {isArchive && <ModalConfirm setIsArchive={setIsArchive} item={item} />}
+      /> */}
+      <p className="mt-10 text-center">End of list</p>
+
+      {/* {isArchive && <ModalConfirm setIsArchive={setIsArchive} item={item} />}
       {isDelete && (
         <ModalDeleteAndRestore
           setIsDelete={setIsDelete}
           item={item}
           isRestore={isRestore}
         />
-      )}
+      )} */}
     </>
   );
 };
 
-export default RolesTable;
+export default SystemTable;

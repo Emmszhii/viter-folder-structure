@@ -25,7 +25,7 @@ const OtherTables = () => {
   }, []);
 
   return (
-    <>
+    <div className="table__wrapper">
       {isLoading ? (
         <TableLoading count={20} cols={4} />
       ) : (
@@ -93,7 +93,7 @@ const OtherTables = () => {
         </table>
       )}
       {/* {showArchiveModal && <ModalConfirm setIsArchive={setShowArchiveModal} />} */}
-    </>
+    </div>
   );
 };
 

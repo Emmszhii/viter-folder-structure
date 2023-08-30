@@ -5,15 +5,15 @@ import {
   MdOutlineAccountCircle,
   MdOutlineLogout,
 } from "react-icons/md";
+import BurgerButton from "./BurgerButton";
 
-const Header = () => {
+const Header = ({ handleShowNav, showNav }) => {
   const [show, setShow] = React.useState(false);
   const ref = React.useRef();
   const refMenu = React.useRef();
 
   const handleShow = () => setShow(!show);
 
-  //
   const handleClickOutside = (e) => {
     console.log(refMenu.current.contains(e.target));
     if (!ref.current.contains(e.target)) {
@@ -27,7 +27,8 @@ const Header = () => {
 
   return (
     <>
-      <header className="flex justify-between py-2 px-6 relative">
+      <header className="flex items-center justify-between py-2 px-6 relative">
+        <BurgerButton handleShowNav={handleShowNav} showNav={showNav} />
         <Logo />
         <div
           className="flex items-center gap-3 cursor-pointer"

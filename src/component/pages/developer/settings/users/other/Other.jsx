@@ -12,7 +12,7 @@ const Other = () => {
         <aside>
           <Navigation />
         </aside>
-        <main className="pr-10">
+        <main>
           <Breadcrumbs />
           <div className="flex justify-between items-center my-5">
             <h1>Other</h1>

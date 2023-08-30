@@ -7,17 +7,24 @@ import ModalAddRoles from "./ModalAddRoles";
 
 const Roles = () => {
   const [isShow, setIsShow] = React.useState(false);
+  const [itemEdit, setItemEdit] = React.useState([]);
+  console.log(itemEdit);
+  // show Nav in mobile
+  const [showNav, setShowNav] = React.useState(false);
+  const handleShowNav = () => setShowNav(!showNav);
 
-  const handleAddRoles = () => setIsShow(true);
+  const handleAddRoles = () => {
+    setIsShow(true);
+  };
 
   return (
     <>
-      <Header />
+      <Header showNav={showNav} handleShowNav={handleShowNav} />
       <section className="main__grid">
-        <aside>
+        <aside className={`${showNav ? "active" : ""} `}>
           <Navigation menu="settings" submenu="users" />
         </aside>
-        <main className="pr-10">
+        <main>
           <Breadcrumbs />
           <div className="flex justify-between items-center my-5">
             <h1>Roles</h1>
@@ -28,11 +35,17 @@ const Roles = () => {
               Add
             </button>
           </div>
-          <RolesTable />
+          <RolesTable setIsShow={setIsShow} setItemEdit={setItemEdit} />
         </main>
       </section>
 
-      {isShow && <ModalAddRoles setIsShow={setIsShow} />}
+      {isShow && (
+        <ModalAddRoles
+          setIsShow={setIsShow}
+          itemEdit={itemEdit}
+          setItemEdit={setItemEdit}
+        />
+      )}
     </>
   );
 };

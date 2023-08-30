@@ -158,6 +158,10 @@
   .btn--sm {
     @apply px-3 py-1 min-w-[60px];
   }
+  .btn:disabled {
+    @apply bg-gray-300 hover:bg-gray-300 cursor-not-allowed;
+  }
+
   .tooltip {
     @apply w-[24px] h-[24px] hover:bg-gray-200 flex justify-center items-center cursor-pointer rounded-full relative whitespace-nowrap;
   }
@@ -177,6 +181,21 @@
   .loading-bar::after {
     @apply content-[''] absolute top-0 left-0 w-[180%] h-full bg-gradient-to-r from-transparent via-[#eeeeee] to-transparent animate-loading;
   }
+  .toggle__button {
+    @apply transition-all cursor-pointer rounded-sm p-1 md:hidden hover:bg-accent;
+  }
+  .toggle__button span {
+    @apply block w-8 h-1 m-1 bg-gray-600;
+  }
+  .toggle__button.active span:first-child {
+    @apply rotate-45 translate-y-2;
+  }
+  .toggle__button.active span:nth-child(2) {
+    @apply opacity-0;
+  }
+  .toggle__button.active span:last-child {
+    @apply -rotate-45 -translate-y-2;
+  }
 }
 
 @layer utilities {
@@ -188,6 +207,18 @@
   }
   .main__grid {
     @apply grid grid-cols-[0px_1fr] lg:grid-cols-[200px_1fr] min-h-[calc(100vh_-_66px)]  gap-0 lg:gap-8 transition-all;
+  }
+  .main__grid main {
+    @apply p-7 overflow-y-hidden md:p-0 md:pr-10;
+  }
+  .table__wrapper {
+    @apply overflow-x-auto;
+  }
+  .main__grid aside {
+    @apply transition-all;
+  }
+  .main__grid aside.active {
+    @apply absolute z-10 left-0 w-80;
   }
 }
 
