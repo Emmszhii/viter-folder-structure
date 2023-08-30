@@ -1,6 +1,5 @@
 import React from "react";
 import TableLoading from "../../../../../partials/TableLoading";
-
 import Pills from "../../../../../partials/Pills";
 import { AiFillDelete, AiTwotoneEdit } from "react-icons/ai";
 import { BsArchiveFill } from "react-icons/bs";
@@ -15,6 +14,9 @@ const OtherTables = ({ setItem, item, setIsShowAddModal }) => {
   const [isDelete, setIsDelete] = React.useState(false);
   const [isArchive, setIsArchive] = React.useState(false);
   const [selectedItem, setSelectedItem] = React.useState([]);
+
+  const active = otheruser.filter((item) => item.status === 1);
+  const inactive = otheruser.filter((item) => item.status === 0);
 
   const handleRestore = (item) => {
     setSelectedItem(item);

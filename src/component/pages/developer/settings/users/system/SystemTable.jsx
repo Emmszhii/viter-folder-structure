@@ -18,6 +18,10 @@ const SystemTable = ({ item, setItem, setIsAddModal }) => {
   const [isRestore, setIsRestore] = React.useState(false);
   const [selectedItem, setSelectedItem] = React.useState(false);
 
+  const active = system.filter((item) => item.status === 1).length;
+
+  const inactive = system.filter((item) => item.status === 0).length;
+
   const handleEdit = (item) => {
     setIsAddModal(true);
     setItem(item);
@@ -147,17 +151,12 @@ const SystemTable = ({ item, setItem, setIsAddModal }) => {
                 })}
               </tbody>
             </table>
-            {/* <Loadmore /> */}
+            <Loadmore />
+            <p className="text-center">End of list</p>
           </div>
+          <Footer record={system.length} active={active} inactive={inactive} />
         </>
       )}
-      {/* <Footer
-        record={system.length}
-        active={activeRoles}
-        inactive={inActiveRoles}
-      /> */}
-
-      <p className="mt-10 text-center">End of list</p>
 
       {isArchive && (
         <ModalConfirm setIsArchive={setIsArchive} item={selectedItem} />
