@@ -7,7 +7,6 @@ import ModalAddSystem from "./ModalAddSystem";
 
 const System = () => {
   const [showAddModal, setIsAddModal] = React.useState(false);
-  console.log(showAddModal);
   const [item, setItem] = React.useState([]);
 
   return (
@@ -28,11 +27,21 @@ const System = () => {
               Add
             </button>
           </div>
-          <SystemTable item={item} setItem={setItem} />
+          <SystemTable
+            item={item}
+            setItem={setItem}
+            setIsAddModal={setIsAddModal}
+          />
         </main>
       </section>
 
-      {showAddModal && <ModalAddSystem setIsAddModal={setIsAddModal} />}
+      {showAddModal && (
+        <ModalAddSystem
+          setIsAddModal={setIsAddModal}
+          item={item}
+          setItem={setItem}
+        />
+      )}
     </>
   );
 };

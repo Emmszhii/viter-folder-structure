@@ -28,7 +28,7 @@ const ModalDeleteAndRestore = ({ setIsDelete, item, isRestore }) => {
 
         <div className="modal__body">
           <h3 className="mb-3">Are you sure?</h3>
-          <p>{`You are about to ${isRestore ? "Restore" : "delete"} ${
+          <p>{`You are about to ${isRestore ? "restore" : "delete"} ${
             item.name
           }, do you want to continue?`}</p>
         </div>

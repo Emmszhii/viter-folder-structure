@@ -11,10 +11,34 @@ import Footer from "../../../../../partials/Footer";
 import ModalConfirm from "../../../../../partials/modals/ModalConfirm";
 import ModalDeleteAndRestore from "../../../../../partials/modals/ModalDeleteAndRestore";
 
-const SystemTable = ({ item, setItem }) => {
+const SystemTable = ({ item, setItem, setIsAddModal }) => {
   const [isLoading, setIsLoading] = React.useState(false);
+  const [isArchive, setIsArchive] = React.useState(false);
+  const [isDelete, setIsDelete] = React.useState(false);
+  const [isRestore, setIsRestore] = React.useState(false);
+  const [selectedItem, setSelectedItem] = React.useState(false);
 
-  const handleEdit = () => {};
+  const handleEdit = (item) => {
+    setIsAddModal(true);
+    setItem(item);
+  };
+
+  const handleArchive = (item) => {
+    setIsArchive(true);
+    setSelectedItem(item);
+  };
+
+  const handleDelete = (item) => {
+    setSelectedItem(item);
+    setIsDelete(true);
+    setIsRestore(false);
+  };
+
+  const handleRestore = (item) => {
+    setSelectedItem(item);
+    setIsDelete(true);
+    setIsRestore(true);
+  };
 
   React.useEffect(() => {
     setIsLoading(true);
@@ -28,7 +52,7 @@ const SystemTable = ({ item, setItem }) => {
       {isLoading ? (
         <>
           <TableLoading count={1} cols={1} />
-          <TableLoading count={20} cols={4} />
+          <TableLoading count={20} cols={5} />
         </>
       ) : (
         <>
@@ -39,7 +63,8 @@ const SystemTable = ({ item, setItem }) => {
                 <tr>
                   <th>#</th>
                   <th>Name</th>
-                  <th>Description</th>
+                  <th>Role</th>
+                  <th>Email</th>
                   <th>Status</th>
                   <th className="action"></th>
                 </tr>
@@ -63,7 +88,8 @@ const SystemTable = ({ item, setItem }) => {
                     <tr key={key}>
                       <td>{item.id}</td>
                       <td>{item.name}</td>
-                      <td>{item.description}</td>
+                      <td>{item.role}</td>
+                      <td>{item.email}</td>
                       <td>
                         {item.status === 1 ? (
                           <Pills label="Active" bgc="bg-green-800" />
@@ -78,7 +104,7 @@ const SystemTable = ({ item, setItem }) => {
                               <button
                                 className="tooltip"
                                 data-tooltip="Edit"
-                                // onClick={() => handleEdit(item)}
+                                onClick={() => handleEdit(item)}
                               >
                                 <AiTwotoneEdit />
                               </button>
@@ -87,7 +113,7 @@ const SystemTable = ({ item, setItem }) => {
                               <button
                                 className="tooltip"
                                 data-tooltip="Archive"
-                                // onClick={() => handleArchive(item)}
+                                onClick={() => handleArchive(item)}
                               >
                                 <BsArchiveFill />
                               </button>
@@ -99,7 +125,7 @@ const SystemTable = ({ item, setItem }) => {
                               <button
                                 className="tooltip"
                                 data-tooltip="Delete"
-                                // onClick={() => handleDelete(item)}
+                                onClick={() => handleDelete(item)}
                               >
                                 <AiFillDelete />
                               </button>
@@ -108,7 +134,7 @@ const SystemTable = ({ item, setItem }) => {
                               <button
                                 className="tooltip"
                                 data-tooltip="Restore"
-                                // onClick={() => handleRestore(item)}
+                                onClick={() => handleRestore(item)}
                               >
                                 <FaTrashRestoreAlt />
                               </button>
@@ -130,16 +156,19 @@ const SystemTable = ({ item, setItem }) => {
         active={activeRoles}
         inactive={inActiveRoles}
       /> */}
+
       <p className="mt-10 text-center">End of list</p>
 
-      {/* {isArchive && <ModalConfirm setIsArchive={setIsArchive} item={item} />}
+      {isArchive && (
+        <ModalConfirm setIsArchive={setIsArchive} item={selectedItem} />
+      )}
       {isDelete && (
         <ModalDeleteAndRestore
-          setIsDelete={setIsDelete}
-          item={item}
+          item={selectedItem}
           isRestore={isRestore}
+          setIsDelete={setIsDelete}
         />
-      )} */}
+      )}
     </>
   );
 };

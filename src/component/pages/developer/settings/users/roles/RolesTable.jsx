@@ -55,7 +55,10 @@ const RolesTable = ({ setIsShow, setItemEdit }) => {
   return (
     <>
       {isLoading ? (
-        <TableLoading count={20} cols={4} />
+        <>
+          <TableLoading count={1} cols={1} />
+          <TableLoading count={20} cols={4} />
+        </>
       ) : (
         <>
           <SearchBar />
