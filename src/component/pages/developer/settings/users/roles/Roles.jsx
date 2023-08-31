@@ -4,11 +4,14 @@ import Breadcrumbs from "../../../../../partials/Breadcrumbs";
 import Navigation from "../../../../../partials/Navigation";
 import RolesTable from "./RolesTable";
 import ModalAddRoles from "./ModalAddRoles";
+import Toast from "../../../../../partials/Toast";
+import ModalError from "../../../../../partials/modals/ModalError";
 
 const Roles = () => {
   const [isShow, setIsShow] = React.useState(false);
   const [itemEdit, setItemEdit] = React.useState([]);
-  console.log(itemEdit);
+  const [isSuccess, setIsSuccess] = React.useState(false);
+  const [isError, setIsError] = React.useState(true);
   // show Nav in mobile
   const [showNav, setShowNav] = React.useState(false);
   const handleShowNav = () => setShowNav(!showNav);
@@ -44,8 +47,11 @@ const Roles = () => {
           setIsShow={setIsShow}
           itemEdit={itemEdit}
           setItemEdit={setItemEdit}
+          setIsSuccess={setIsSuccess}
         />
       )}
+      {isSuccess && <Toast setIsSuccess={setIsSuccess} />}
+      {isError && <ModalError setIsError={setIsError} />}
     </>
   );
 };

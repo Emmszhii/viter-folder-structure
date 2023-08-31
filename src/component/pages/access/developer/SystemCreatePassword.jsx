@@ -4,13 +4,14 @@ import Logo from "../../../svg/logo";
 import { Link } from "react-router-dom";
 import SpinnerButton from "../../../partials/spinners/SpinnerButton";
 import { BsCheckCircleFill, BsFillCheckCircleFill } from "react-icons/bs";
+import SpinnerWindow from "../../../partials/spinners/SpinnerWindow";
 
 const SystemCreatePassword = () => {
   const [isPasswordShow, setIsPasswordShow] = React.useState(false);
   const [isConfirmPasswordShow, setIsConfirmPasswordShow] =
     React.useState(false);
-
   const [isLoading, setIsLoading] = React.useState(false);
+  const [isLoadingSpinner, setIsLoadingSpinner] = React.useState(false);
   const [isSuccess, setIsSuccess] = React.useState(false);
 
   const handleSubmit = () => {
@@ -27,8 +28,19 @@ const SystemCreatePassword = () => {
   const handleConfirmShowPassword = () =>
     setIsConfirmPasswordShow(!isConfirmPasswordShow);
 
+  React.useEffect(() => {
+    function spinnerOn() {
+      setIsLoadingSpinner(true);
+      setTimeout(() => {
+        setIsLoadingSpinner(false);
+      }, 2000);
+    }
+    spinnerOn();
+  }, []);
+
   return (
     <>
+      {isLoadingSpinner && <SpinnerWindow />}
       <div className="h-screen w-full flex justify-center items-center">
         <div className="login w-full max-w-[380px] border border-gray-200 py-8 px-4 rounded-md shadow-sm">
           {/* <div className="flex flex-col items-center mb-4"> */}
